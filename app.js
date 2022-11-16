@@ -7,6 +7,10 @@ const URL_FOR_FRONTEND = "YOUR_GITHUB_PAGE_ORIGIN_HERE";
 
 let users = require("./data"); // users array imported from data.js
 
+//Connect to database
+//Mit brugernavn er: DET DER STÅR I DB.USER
+//Min kode er: asdjlas
+
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 
@@ -21,7 +25,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.send("Hvad skal vi lave!");
 });
 
 // READ: read all users from users
@@ -30,7 +34,7 @@ app.get("/users", (req, res) => {
 });
 
 // READ: get user by id
-app.get("/users/:id", (req, res) => {
+app.get("/users/:user_id", (req, res) => {
     const id = req.params.id;
     const user = users.find(item => item.id == id);
     return res.json(user);
