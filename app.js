@@ -9,10 +9,6 @@ const URL_FOR_FRONTEND = "YOUR_GITHUB_PAGE_ORIGIN_HERE";
 
 let users = require("./data"); // users array imported from data.js
 
-//Connect to database
-//Mit brugernavn er: DET DER STÅR I DB.USER
-//Min kode er: asdjlas
-
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 
@@ -35,6 +31,8 @@ app.get("/users", (req, res) => {
     return res.json(users);
 });
 
+
+// Get users by user_id
 app.get('/users/:user_id', (req, res) => {
     const query = "SELECT * FROM users WHERE user_id = ?;";
     const user_id = req.params.user_id;
@@ -49,14 +47,151 @@ app.get('/users/:user_id', (req, res) => {
             }
         }
     );
-})
+});
 
-/*
-// READ: get user by id
-app.get("/users/:user_id", (req, res) => {
-    const id = req.params.id;
-    const user = users.find(item => item.id == id);
-    return res.json(user);
+// Get all cities from cities
+app.get('/cities', (req, res) => {
+    const query = "SELECT * FROM cities;";
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
+// Get cities by id
+app.get('/cities/:city_id', (req, res) => {
+    const query = "SELECT * FROM cities WHERE city_id = ?;";
+    const city_id = req.params.city_id;
+    mysqlConnection.query(
+        query,
+        [city_id],
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
+// Get all locations from locations
+app.get('/locations', (req, res) => {
+    const query = "SELECT * FROM locations;";
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
+// Get locations by id
+app.get('/locations/:location_id', (req, res) => {
+    const query = "SELECT * FROM locations WHERE location_id = ?;";
+    const location_id = req.params.location_id;
+    mysqlConnection.query(
+        query,
+        [location_id],
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
+// Get all activities from activities
+app.get('/activities', (req, res) => {
+    const query = "SELECT * FROM activities;";
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
+// Get activities by id
+app.get('/activities/:activity_id', (req, res) => {
+    const query = "SELECT * FROM activities WHERE activity_id = ?;";
+    const activity_id = req.params.activity_id;
+    mysqlConnection.query(
+        query,
+        [activity_id],
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
+// Get activities by season
+app.get('/activities/:season', (req, res) => {
+    const query = `SELECT * FROM activities WHERE season = "?";`;
+    const season = req.params.season;
+    mysqlConnection.query(
+        query,
+        [season],
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
+// Get all favourites from favourites
+app.get('/favourites', (req, res) => {
+    const query = "SELECT * FROM favourites;";
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
+// Get favourites by id
+app.get('/favourites/:favourite_id', (req, res) => {
+    const query = "SELECT * FROM favourites WHERE favourite_id = ?;";
+    const favourite_id = req.params.favourite_id;
+    mysqlConnection.query(
+        query,
+        [favourite_id],
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
 });
 
 // CREATE: create new user and add to users
@@ -86,7 +221,7 @@ app.delete("/users/:id", (req, res) => {
     users = users.filter(item => item.id != id);
     return res.json(users);
 });
-*/
+
 
 app.listen(port, () => {
     console.log(`Node.js REST API listening at http://localhost:${port}`);
