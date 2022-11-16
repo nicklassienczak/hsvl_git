@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 3000;
+require('dotenv');
+const mysqlConnection = require("./database");
 // Your github page origin has to be written EXACTLY like this! https://behu-kea.github.io
 const URL_FOR_FRONTEND = "YOUR_GITHUB_PAGE_ORIGIN_HERE";
 
@@ -33,6 +35,23 @@ app.get("/users", (req, res) => {
     return res.json(users);
 });
 
+app.get('/users/:user_id', (req, res) => {
+    const query = "SELECT * FROM users WHERE user_id = ?;";
+    const user_id = req.params.user_id;
+    mysqlConnection.query(
+        query,
+        [user_id],
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+})
+
+/*
 // READ: get user by id
 app.get("/users/:user_id", (req, res) => {
     const id = req.params.id;
@@ -67,6 +86,7 @@ app.delete("/users/:id", (req, res) => {
     users = users.filter(item => item.id != id);
     return res.json(users);
 });
+*/
 
 app.listen(port, () => {
     console.log(`Node.js REST API listening at http://localhost:${port}`);
