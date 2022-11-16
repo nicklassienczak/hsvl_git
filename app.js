@@ -129,7 +129,7 @@ app.get('/activities', (req, res) => {
 });
 
 // Get activities by id
-app.get('/activities/:activity_id', (req, res) => {
+app.get('/activities/id/:activity_id', (req, res) => {
     const query = "SELECT * FROM activities WHERE activity_id = ?;";
     const activity_id = req.params.activity_id;
     mysqlConnection.query(
@@ -146,8 +146,9 @@ app.get('/activities/:activity_id', (req, res) => {
 });
 
 // Get activities by season
-app.get('/activities/:season', (req, res) => {
-    const query = `SELECT * FROM activities WHERE season = "?";`;
+app.get('/activities/season/:season', (req, res) => {
+    console.log("alsddas");
+    const query = "SELECT * FROM activities WHERE season = ?;";
     const season = req.params.season;
     mysqlConnection.query(
         query,
