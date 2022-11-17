@@ -147,7 +147,6 @@ app.get('/activities/id/:activity_id', (req, res) => {
 
 // Get activities by season
 app.get('/activities/season/:season', (req, res) => {
-    console.log("alsddas");
     const query = "SELECT * FROM activities WHERE season = ?;";
     const season = req.params.season;
     mysqlConnection.query(
