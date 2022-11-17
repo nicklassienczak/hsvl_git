@@ -184,5 +184,3 @@ let users = `[
 users = JSON.parse(users);
 
 module.exports = users;
-
-

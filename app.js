@@ -196,11 +196,22 @@ app.get('/favourites/:favourite_id', (req, res) => {
 
 // CREATE: create new user and add to users
 app.post("/users", (req, res) => {
-    let newUser = req.body;
-    const timestamp = Date.now(); // dummy generated user id
-    newUser.id = timestamp;
-    users.push(newUser);
-    return res.json(users);
+    const query = `INSERT INTO users (userName, age, email) VALUES (?, ?, ?);`;
+    const userName = req.body.userName;
+    const age = req.body.age;
+    const email = req.body.email;
+    mysqlConnection.query(
+        query,
+        [userName, age, email],
+        (err, results, fields) => {
+            if (!err) {
+                res.sendStatus(200);
+            } else {
+                console.log(err);
+                res.sendStatus(500);
+            }
+        }
+    );
 });
 
 // UPDATE: update existing user
