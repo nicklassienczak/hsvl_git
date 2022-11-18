@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3030;
 require('dotenv');
 const mysqlConnection = require("./database");
 // Your github page origin has to be written EXACTLY like this! https://behu-kea.github.io
