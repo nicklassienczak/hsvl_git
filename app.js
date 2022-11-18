@@ -175,6 +175,8 @@ app.get('/seasons', (req, res) => {
         }
     );
 });
+
+// Get seasons by id
 app.get('/seasons/:season_id', (req, res) => {
     const query = "SELECT * FROM seasons WHERE season_id = ?;";
     const favourite_id = req.params.season_id;
