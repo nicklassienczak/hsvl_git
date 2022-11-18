@@ -161,7 +161,7 @@ app.get('/activities/season/:season', (req, res) => {
         }
     );
 });
-
+// Get all seasons from seasons
 app.get('/seasons', (req, res) => {
     const query = "SELECT * FROM seasons;";
     mysqlConnection.query(
@@ -175,6 +175,22 @@ app.get('/seasons', (req, res) => {
         }
     );
 });
+app.get('/seasons/:season_id', (req, res) => {
+    const query = "SELECT * FROM seasons WHERE season_id = ?;";
+    const favourite_id = req.params.season_id;
+    mysqlConnection.query(
+        query,
+        [season_id],
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
 
 // Get all favourites from favourites
 app.get('/favourites', (req, res) => {
