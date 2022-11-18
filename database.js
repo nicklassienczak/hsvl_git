@@ -5,13 +5,12 @@ console.log('Hej Nicklas');
 
 const mysqlConnection = mysql.createConnection({
     host: process.env.HOST,
-    port: process.env.PORT,
     user: process.env.MYSQL_USER,
     database: process.env.DATABASE,
     password: process.env.PASSWORD,
     multipleStatements: true,
     ssl: {
-        "rejectUnauthorized": this.host === "localhost"
+        rejectUnauthorized: this.host === "localhost"
     }
 });
 
