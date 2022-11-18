@@ -162,6 +162,20 @@ app.get('/activities/season/:season', (req, res) => {
     );
 });
 
+app.get('/seasons', (req, res) => {
+    const query = "SELECT * FROM seasons;";
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+});
+
 // Get all favourites from favourites
 app.get('/favourites', (req, res) => {
     const query = "SELECT * FROM favourites;";
