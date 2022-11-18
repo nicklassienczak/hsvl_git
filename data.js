@@ -181,6 +181,92 @@ let users = `[
     }
 ]`;
 
+let activities = `[
+\t{
+\t\t"activity_id" : 1,
+\t\t"activity" : "Den røde plads",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 1,
+\t\t"location_id" : 1
+\t},
+\t{
+\t\t"activity_id" : 2,
+\t\t"activity" : "Havne badet, Islands Brygge",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 1,
+\t\t"location_id" : 2
+\t},
+\t{
+\t\t"activity_id" : 3,
+\t\t"activity" : "Greenkayak - Christianshavn",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 1,
+\t\t"location_id" : 3
+\t},
+\t{
+\t\t"activity_id" : 4,
+\t\t"activity" : "Botanisk Have",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 7,
+\t\t"location_id" : 4
+\t},
+\t{
+\t\t"activity_id" : 5,
+\t\t"activity" : "Amalienborg Slot",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 1,
+\t\t"location_id" : 5
+\t},
+\t{
+\t\t"activity_id" : 6,
+\t\t"activity" : "Kastellet",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 2,
+\t\t"location_id" : 6
+\t},
+\t{
+\t\t"activity_id" : 7,
+\t\t"activity" : "Konditaget Lüders",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 2,
+\t\t"location_id" : 7
+\t},
+\t{
+\t\t"activity_id" : 8,
+\t\t"activity" : "Kongens Have",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 3,
+\t\t"location_id" : 8
+\t},
+\t{
+\t\t"activity_id" : 9,
+\t\t"activity" : "Frederiksberg Have",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 4,
+\t\t"location_id" : 9
+\t},
+\t{
+\t\t"activity_id" : 10,
+\t\t"activity" : "Amager Strandpark",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 5,
+\t\t"location_id" : 10
+\t},
+\t{
+\t\t"activity_id" : 11,
+\t\t"activity" : "Jægersborg Dyrehave",
+\t\t"popularity" : 51.10,
+\t\t"season_id" : 6,
+\t\t"location_id" : 11
+\t}
+]`
+
 users = JSON.parse(users);
 
 module.exports = users;
+
+activities = JSON.parse(activities);
+
+module.exports = activities;
+
+
