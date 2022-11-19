@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = 3030;
+const port = process.env.PORT || 3030;
 require('dotenv');
 const mysqlConnection = require("./database");
 
@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 // READ: read all users from users
 app.get("/users", (req, res) => {
-    const query = "SELECT * FROM users;";
+    const query = "SELECT * FROM hsvl_database.users;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
@@ -41,7 +41,7 @@ app.get("/users", (req, res) => {
 
 // Get users by user_id
 app.get('/users/:user_id', (req, res) => {
-    const query = "SELECT * FROM users WHERE user_id = ?;";
+    const query = "SELECT * FROM hsvl_database.users WHERE user_id = ?;";
     const user_id = req.params.user_id;
     mysqlConnection.query(
         query,
@@ -58,7 +58,7 @@ app.get('/users/:user_id', (req, res) => {
 
 // Get all cities from cities
 app.get('/cities', (req, res) => {
-    const query = "SELECT * FROM cities;";
+    const query = "SELECT * FROM hsvl_database.cities;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
@@ -73,7 +73,7 @@ app.get('/cities', (req, res) => {
 
 // Get cities by id
 app.get('/cities/:city_id', (req, res) => {
-    const query = "SELECT * FROM cities WHERE city_id = ?;";
+    const query = "SELECT * FROM hsvl_database.cities WHERE city_id = ?;";
     const city_id = req.params.city_id;
     mysqlConnection.query(
         query,
@@ -90,7 +90,7 @@ app.get('/cities/:city_id', (req, res) => {
 
 // Get all locations from locations
 app.get('/locations', (req, res) => {
-    const query = "SELECT * FROM locations;";
+    const query = "SELECT * FROM hsvl_database.locations;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
@@ -105,7 +105,7 @@ app.get('/locations', (req, res) => {
 
 // Get locations by id
 app.get('/locations/:location_id', (req, res) => {
-    const query = "SELECT * FROM locations WHERE location_id = ?;";
+    const query = "SELECT * FROM hsvl_database.locations WHERE location_id = ?;";
     const location_id = req.params.location_id;
     mysqlConnection.query(
         query,
@@ -122,7 +122,7 @@ app.get('/locations/:location_id', (req, res) => {
 
 // Get all activities from activities
 app.get('/activities', (req, res) => {
-    const query = "SELECT * FROM activities;";
+    const query = "SELECT * FROM hsvl_database.activities;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
@@ -137,7 +137,7 @@ app.get('/activities', (req, res) => {
 
 // Get activities by id
 app.get('/activities/id/:activity_id', (req, res) => {
-    const query = "SELECT * FROM activities WHERE activity_id = ?;";
+    const query = "SELECT * FROM hsvl_database.activities WHERE activity_id = ?;";
     const activity_id = req.params.activity_id;
     mysqlConnection.query(
         query,
@@ -154,7 +154,7 @@ app.get('/activities/id/:activity_id', (req, res) => {
 
 // Get activities by season
 app.get('/activities/season/:season', (req, res) => {
-    const query = "SELECT * FROM activities WHERE season = ?;";
+    const query = "SELECT * FROM hsvl_database.activities WHERE season = ?;";
     const season = req.params.season;
     mysqlConnection.query(
         query,
@@ -170,7 +170,7 @@ app.get('/activities/season/:season', (req, res) => {
 });
 // Get all seasons from seasons
 app.get('/seasons', (req, res) => {
-    const query = "SELECT * FROM seasons;";
+    const query = "SELECT * FROM hsvl_database.seasons;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
@@ -185,7 +185,7 @@ app.get('/seasons', (req, res) => {
 
 // Get seasons by id
 app.get('/seasons/:season_id', (req, res) => {
-    const query = "SELECT * FROM seasons WHERE season_id = ?;";
+    const query = "SELECT * FROM hsvl_database.seasons WHERE season_id = ?;";
     const favourite_id = req.params.season_id;
     mysqlConnection.query(
         query,
@@ -203,7 +203,7 @@ app.get('/seasons/:season_id', (req, res) => {
 
 // Get all favourites from favourites
 app.get('/favourites', (req, res) => {
-    const query = "SELECT * FROM favourites;";
+    const query = "SELECT * FROM hsvl_database.favourites;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
@@ -218,7 +218,7 @@ app.get('/favourites', (req, res) => {
 
 // Get favourites by id
 app.get('/favourites/:favourite_id', (req, res) => {
-    const query = "SELECT * FROM favourites WHERE favourite_id = ?;";
+    const query = "SELECT * FROM hsvl_database.favourites WHERE favourite_id = ?;";
     const favourite_id = req.params.favourite_id;
     mysqlConnection.query(
         query,
