@@ -42,6 +42,7 @@ app.get("/users", (req, res) => {
 });
 
 
+
 // Get users by user_id
 app.get('/users/:user_id', (req, res) => {
     const query = "SELECT * FROM hsvl_database.users WHERE user_id = ?;";
