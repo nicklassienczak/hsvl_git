@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 3030;
 require('dotenv');
 const mysqlConnection = require("./database");
 
@@ -269,6 +268,6 @@ app.delete("/users/:id", (req, res) => {
 });
 
 
-app.listen(port, () => {
+app.listen(3030, (port) => {
     console.log(`Node.js REST API listening at http://localhost:${port}`);
 });
