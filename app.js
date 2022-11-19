@@ -256,7 +256,7 @@ app.post("/users", (req, res) => {
     );
 });
 
-server.listen(port,(port) => {
+server.listen(3306,(port) => {
     console.log('Listening on port ' + server.address().port);
 });
 
