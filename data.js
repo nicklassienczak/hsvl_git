@@ -181,6 +181,10 @@ let users = `[
     }
 ]`;
 
+users = JSON.parse(users);
+
+module.exports = users;
+
 let activities = `[
 \t{
 \t\t"activity_id" : 1,
@@ -259,14 +263,9 @@ let activities = `[
 \t\t"season_id" : 6,
 \t\t"location_id" : 11
 \t}
-]`
-
-users = JSON.parse(users);
-
-module.exports = users;
+]`;
 
 activities = JSON.parse(activities);
 
 module.exports = activities;
-
 

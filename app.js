@@ -28,7 +28,17 @@ app.get("/", (req, res) => {
 
 // READ: read all users from users
 app.get("/users", (req, res) => {
-    return res.json(users);
+    const query = "SELECT * FROM users;";
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                return res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
 });
 
 
