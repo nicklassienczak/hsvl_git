@@ -4,6 +4,9 @@ const app = express();
 const port = process.env.PORT;
 require('dotenv');
 const mysqlConnection = require("./database");
+const http = require('http');
+const server = http.createServer(app);
+
 
 
 app.use(express.json()); //Used to parse JSON bodies
@@ -273,6 +276,13 @@ app.delete("/users/:id", (req, res) => {
 });
 
 
+server.listen(port,(port) => {
+    console.log('Listening on port ' + server.address().port);
+});
+
+/*
 app.listen(port, () => {
     console.log(`Node.js REST API listening at http://localhost:${port}`);
 });
+
+ */
