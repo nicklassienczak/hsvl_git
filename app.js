@@ -33,7 +33,7 @@ app.get("/users", (req, res) => {
         query,
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -52,7 +52,7 @@ app.get('/users/:user_id', (req, res) => {
         [user_id],
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -67,7 +67,7 @@ app.get('/cities', (req, res) => {
         query,
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -84,7 +84,7 @@ app.get('/cities/:city_id', (req, res) => {
         [city_id],
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -99,7 +99,7 @@ app.get('/locations', (req, res) => {
         query,
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -116,7 +116,7 @@ app.get('/locations/:location_id', (req, res) => {
         [location_id],
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -131,7 +131,7 @@ app.get('/activities', (req, res) => {
         query,
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -148,7 +148,7 @@ app.get('/activities/id/:activity_id', (req, res) => {
         [activity_id],
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -165,7 +165,7 @@ app.get('/activities/season/:season', (req, res) => {
         [season],
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -179,7 +179,7 @@ app.get('/seasons', (req, res) => {
         query,
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -196,7 +196,7 @@ app.get('/seasons/:season_id', (req, res) => {
         [season_id],
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -212,7 +212,7 @@ app.get('/favourites', (req, res) => {
         query,
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
@@ -229,7 +229,7 @@ app.get('/favourites/:favourite_id', (req, res) => {
         [favourite_id],
         (err, results, fields) => {
             if (!err) {
-                return res.json(results);
+                res.json(results);
             } else {
                 console.log(err);
             }
