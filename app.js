@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const http = require('http');
 const path = require('path');
 const mysql = require('mysql2');
@@ -20,13 +20,13 @@ app.use(cors({
 
 const mysqlConnection = require("./database");
 
-app.get("/",(req, res) => {
+app.get('/',(req, res) => {
     res.send("Hvad skal vi lave API");
 })
 
 
 // READ: read all users from users
-app.get("/users", (req, res) => {
+app.get('/users', (req, res) => {
     const query = "SELECT * FROM hsvl_database.users;";
     mysqlConnection.query(
         query,
@@ -37,7 +37,7 @@ app.get("/users", (req, res) => {
                 console.log(err);
             }
         }
-    );
+    )
 });
 
 
@@ -237,6 +237,7 @@ app.get('/favourites/:favourite_id', (req, res) => {
 });
 
 // CREATE: create new user and add to users
+/*
 app.post('/users', (req, res) => {
     const query = `INSERT INTO users (userName, age, email) VALUES (?, ?, ?);`;
     const userName = req.body.userName;
@@ -256,15 +257,12 @@ app.post('/users', (req, res) => {
     );
 });
 
+ */
+
 server.listen(3000,(port) => {
     console.log('Listening on port ' + server.address().port);
 });
 
 
-/*
-app.listen(port, () => {
-    console.log(`Node.js REST API listening at http://localhost:${port}`);
-});
-*/
 
 module.exports = app;
