@@ -1,12 +1,11 @@
 const express = require("express");
+const http = require('http');
+const path = require('path');
+const mysql = require('mysql2');
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT;
-require('dotenv');
-const mysqlConnection = require("./database");
-const http = require('http');
 const server = http.createServer(app);
-
+require('dotenv');
 
 
 app.use(express.json()); //Used to parse JSON bodies
@@ -15,12 +14,12 @@ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 // If the application is running localhost allow all requests,
 // otherwise add cors for specific website
 // Remember to add the NODE_ENV="prod" on server!
-const cors_url = process.env.NODE_ENV === "prod" ? URL_FOR_FRONTEND : "*";
-app.use(
-    cors({
-        origin: cors_url
-    })
-);
+
+app.use(cors({
+        origin: '*'
+    }));
+
+const mysqlConnection = require("./database");
 
 app.get("/",(req, res) => {
     res.send("Hvad skal vi lave API");
@@ -266,3 +265,5 @@ app.listen(port, () => {
     console.log(`Node.js REST API listening at http://localhost:${port}`);
 });
 */
+
+module.exports = app;
