@@ -22,10 +22,6 @@ app.use(
     })
 );
 
-app.get("/", (req, res) => {
-    res.send("Hvad skal vi lave!");
-});
-
 // READ: read all users from users
 app.get("/users", (req, res) => {
     const query = "SELECT * FROM hsvl_database.users;";
@@ -256,26 +252,6 @@ app.post("/users", (req, res) => {
     );
 });
 
-// UPDATE: update existing user
-app.put("/users/:id", (req, res) => {
-    const id = req.params.id;
-    const userData = req.body;
-    let user = users.find(item => item.id == id);
-    user.name = userData.name;
-    user.title = userData.title;
-    user.mail = userData.mail;
-    user.image = userData.image;
-    return res.json(users);
-});
-
-// DELETE: delete user
-app.delete("/users/:id", (req, res) => {
-    const id = req.params.id;
-    users = users.filter(item => item.id != id);
-    return res.json(users);
-});
-
-
 server.listen(port,(port) => {
     console.log('Listening on port ' + server.address().port);
 });
@@ -284,5 +260,4 @@ server.listen(port,(port) => {
 app.listen(port, () => {
     console.log(`Node.js REST API listening at http://localhost:${port}`);
 });
-
- */
+*/
