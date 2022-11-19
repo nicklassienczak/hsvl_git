@@ -26,6 +26,7 @@ app.get("/",(req, res) => {
     res.send("Hvad skal vi lave API");
 })
 
+
 // READ: read all users from users
 app.get("/users", (req, res) => {
     const query = "SELECT * FROM hsvl_database.users;";
