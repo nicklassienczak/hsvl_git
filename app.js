@@ -249,26 +249,6 @@ app.post("/users", (req, res) => {
     );
 });
 
-// UPDATE: update existing user
-app.put("/users/:id", (req, res) => {
-    const id = req.params.id;
-    const userData = req.body;
-    let user = users.find(item => item.id == id);
-    user.name = userData.name;
-    user.title = userData.title;
-    user.mail = userData.mail;
-    user.image = userData.image;
-    return res.json(users);
-});
-
-// DELETE: delete user
-app.delete("/users/:id", (req, res) => {
-    const id = req.params.id;
-    users = users.filter(item => item.id != id);
-    return res.json(users);
-});
-
-
 app.listen(port, () => {
     console.log(`Node.js REST API listening at http://localhost:${port}`);
 });
