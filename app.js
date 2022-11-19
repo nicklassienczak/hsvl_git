@@ -5,6 +5,7 @@ const port = process.env.PORT || 3030;
 require('dotenv');
 const mysqlConnection = require("./database");
 
+
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 
