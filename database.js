@@ -7,7 +7,7 @@ const mysqlConnection = mysql.createConnection({
     host: process.env.HOST,
     user: process.env.MYSQL_USER,
     port: 3306,
-    database: process.env.DATABASE,
+    database: "hsvl_database",
     password: process.env.PASSWORD,
     multipleStatements: true,
     ssl: {
