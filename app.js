@@ -189,7 +189,7 @@ app.get('/seasons', (req, res) => {
 // Get seasons by id
 app.get('/seasons/:season_id', (req, res) => {
     const query = "SELECT * FROM hsvl_database.seasons WHERE season_id = ?;";
-    const favourite_id = req.params.season_id;
+    const season_id = req.params.season_id;
     mysqlConnection.query(
         query,
         [season_id],
@@ -237,7 +237,7 @@ app.get('/favourites/:favourite_id', (req, res) => {
 });
 
 // CREATE: create new user and add to users
-app.post("/users", (req, res) => {
+app.post('/users', (req, res) => {
     const query = `INSERT INTO users (userName, age, email) VALUES (?, ?, ?);`;
     const userName = req.body.userName;
     const age = req.body.age;
