@@ -236,6 +236,21 @@ app.get('/favourites/:favourite_id', (req, res) => {
     );
 });
 
+app.get('/activitiesData', (req, res) => {
+    const query = "SELECT * FROM hsvl_database.activities INNER JOIN hsvl_database.locations INNER JOIN hsvl_database.cities ON hsvl_database.locations.location_id = hsvl_database.activities.location_id = hsvl_database.cities.city_id;";
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    )
+});
+
+
 // CREATE: create new user and add to users
 /*
 app.post('/users', (req, res) => {
