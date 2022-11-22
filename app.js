@@ -251,7 +251,7 @@ app.get('/data', (req, res) => {
 });
 
 app.get('/mostPopulare', (req, res) => {
-    const query = "SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id ORDER BY popularity LIMIT 3;";
+    const query = "SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id ORDER BY popularity DESC LIMIT 3;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
