@@ -301,7 +301,61 @@ app.get('/leastPopularActivities', (req, res) => {
     )
 });
 
+app.get('/spring', (req, res) => {
+    const query = `SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id WHERE seasons.season LIKE "%Forår%";`;
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    )
+});
 
+app.get('/summer', (req, res) => {
+    const query = `SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id WHERE seasons.season LIKE "%Sommer%";`;
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    )
+});
+
+app.get('/fall', (req, res) => {
+    const query = `SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id WHERE seasons.season LIKE "%Efterår%";`;
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    )
+});
+
+app.get('/winter', (req, res) => {
+    const query = `SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id WHERE seasons.season LIKE "%Winter%";`;
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    )
+});
 // CREATE: create new user and add to users
 /*
 app.post('/users', (req, res) => {
