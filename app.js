@@ -6,6 +6,8 @@ const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 
+// Your github page origin has to be written EXACTLY like this! https://behu-kea.github.io
+const URL_FOR_FRONTEND = "https://arnefogh.github.io";
 
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
@@ -14,9 +16,12 @@ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 // otherwise add cors for specific website
 // Remember to add the NODE_ENV="prod" on server!
 
-app.use(cors({
-        origin: '*'
-    }));
+const cors_url = process.env.NODE_ENV === "prod" ? URL_FOR_FRONTEND : "*";
+app.use(
+    cors({
+        origin: cors_url
+    })
+);
 
 const mysqlConnection = require("./database");
 
