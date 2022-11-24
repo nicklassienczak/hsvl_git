@@ -5,25 +5,21 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
-/*
+
 // Your github page origin has to be written EXACTLY like this! https://behu-kea.github.io
 const URL_FOR_FRONTEND = "https://arnefogh.github.io";
 
-
- */
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 
 // If the application is running localhost allow all requests,
 // otherwise add cors for specific website
 // Remember to add the NODE_ENV="prod" on server!
-/*
-const cors_url = process.env.NODE_ENV === "prod" ? URL_FOR_FRONTEND : "*";
 
- */
+const cors_url = process.env.NODE_ENV === "prod" ? URL_FOR_FRONTEND : "*";
 app.use(
     cors({
-        origin: "*"
+        origin: cors_url
     })
 );
 
@@ -259,8 +255,36 @@ app.get('/data', (req, res) => {
     )
 });
 
-app.get('/mostPopulare', (req, res) => {
+app.get('/mostPopular', (req, res) => {
     const query = "SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id ORDER BY popularity DESC LIMIT 3;";
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    )
+});
+
+app.get('/mostPopularActivities', (req, res) => {
+    const query = "SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id ORDER BY popularity DESC;";
+    mysqlConnection.query(
+        query,
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    )
+});
+
+app.get('/leastPopularActivities', (req, res) => {
+    const query = "SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id ORDER BY popularity ASC;";
     mysqlConnection.query(
         query,
         (err, results, fields) => {
