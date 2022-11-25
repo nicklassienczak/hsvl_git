@@ -48,13 +48,15 @@ app.get('/users', (req, res) => {
         }
     )
 });
-
+/*
 app.post("/newUsers",(req, res)=>{
     const query = "SELECT * FROM users;";
     let newUser = req.body;
     users.push(newUser);
     return res.json(newUser);
 })
+
+ */
 
 
 
@@ -364,7 +366,7 @@ app.get('/winter', (req, res) => {
     )
 });
 // CREATE: create new user and add to users
-/*
+
 app.post('/users', (req, res) => {
     const query = `INSERT INTO users (userName, age, email) VALUES (?, ?, ?);`;
     const userName = req.body.userName;
@@ -384,7 +386,7 @@ app.post('/users', (req, res) => {
     );
 });
 
- */
+
 
 server.listen(3000,(port) => {
     console.log('Listening on port ' + server.address().port);
