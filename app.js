@@ -49,6 +49,13 @@ app.get('/users', (req, res) => {
     )
 });
 
+app.post("/newUsers",(req, res)=>{
+    const query = "SELECT * FROM users;";
+    let newUser = req.body;
+    users.push(newUser);
+    return res.json(newUser);
+})
+
 
 
 // Get users by user_id
