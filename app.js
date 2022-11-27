@@ -5,25 +5,25 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
-/*
-// Your github page origin has to be written EXACTLY like this! https://behu-kea.github.io
+
+// GitHub page
 const URL_FOR_FRONTEND = "https://arnefogh.github.io";
 
 
- */
+
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 
 // If the application is running localhost allow all requests,
 // otherwise add cors for specific website
 // Remember to add the NODE_ENV="prod" on server!
-/*
+
 const cors_url = process.env.NODE_ENV === "prod" ? URL_FOR_FRONTEND : "*";
 
- */
+
 app.use(
     cors({
-        origin: "*"
+        origin: cors_url
     })
 );
 
@@ -48,16 +48,6 @@ app.get('/users', (req, res) => {
         }
     )
 });
-/*
-app.post("/newUsers",(req, res)=>{
-    const query = "SELECT * FROM users;";
-    let newUser = req.body;
-    users.push(newUser);
-    return res.json(newUser);
-})
-
- */
-
 
 
 // Get users by user_id
@@ -189,6 +179,7 @@ app.get('/activities/season/:season', (req, res) => {
         }
     );
 });
+
 // Get all seasons from seasons
 app.get('/seasons', (req, res) => {
     const query = "SELECT * FROM hsvl_database.seasons;";
@@ -254,6 +245,7 @@ app.get('/favourites/:favourite_id', (req, res) => {
     );
 });
 
+// Get data from multiple tables
 app.get('/data', (req, res) => {
     const query = "SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id;";
     mysqlConnection.query(
@@ -268,6 +260,7 @@ app.get('/data', (req, res) => {
     )
 });
 
+// Get the top 3 most popular cities
 app.get('/mostPopular', (req, res) => {
     const query = "SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id ORDER BY popularity DESC LIMIT 3;";
     mysqlConnection.query(
@@ -282,6 +275,7 @@ app.get('/mostPopular', (req, res) => {
     )
 });
 
+// Get all the most popular activities
 app.get('/mostPopularActivities', (req, res) => {
     const query = "SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id ORDER BY popularity DESC;";
     mysqlConnection.query(
@@ -296,6 +290,7 @@ app.get('/mostPopularActivities', (req, res) => {
     )
 });
 
+// Get all the least popular activities
 app.get('/leastPopularActivities', (req, res) => {
     const query = "SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id ORDER BY popularity ASC;";
     mysqlConnection.query(
@@ -310,6 +305,7 @@ app.get('/leastPopularActivities', (req, res) => {
     )
 });
 
+// Get all activities in the spring
 app.get('/spring', (req, res) => {
     const query = `SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id WHERE seasons.season LIKE "%Forår%";`;
     mysqlConnection.query(
@@ -324,6 +320,7 @@ app.get('/spring', (req, res) => {
     )
 });
 
+// Get all activities in the summer
 app.get('/summer', (req, res) => {
     const query = `SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id WHERE seasons.season LIKE "%Sommer%";`;
     mysqlConnection.query(
@@ -338,6 +335,7 @@ app.get('/summer', (req, res) => {
     )
 });
 
+// Get all activities in the fall
 app.get('/fall', (req, res) => {
     const query = `SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id WHERE seasons.season LIKE "%Efterår%";`;
     mysqlConnection.query(
@@ -352,6 +350,7 @@ app.get('/fall', (req, res) => {
     )
 });
 
+// Get all activities in the winter
 app.get('/winter', (req, res) => {
     const query = `SELECT * FROM locations INNER JOIN cities ON cities.city_id = locations.city_id INNER JOIN activities ON activities.location_id = locations.location_id INNER JOIN seasons ON activities.season_id = seasons.season_id WHERE seasons.season LIKE "%Winter%";`;
     mysqlConnection.query(
@@ -365,8 +364,8 @@ app.get('/winter', (req, res) => {
         }
     )
 });
-// CREATE: create new user and add to users
 
+// CREATE: create new user and add to users
 app.post('/users', (req, res) => {
     const query = `INSERT INTO users (userName, age, email) VALUES (?, ?, ?);`;
     const userName = req.body.userName;
