@@ -385,6 +385,11 @@ app.post('/users', (req, res) => {
     );
 });
 
+app.get('/eksamen', (req, res) => {
+    const data = ["red", "green", "blue", "purple"]
+    res.json(data)
+})
+
 
 
 server.listen(3000,(port) => {
